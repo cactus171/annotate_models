@@ -28,5 +28,7 @@ options = Annotate.setup_options(
 )
 Annotate.eager_load(options) if Annotate.include_models?
 
+UserRecord.connects_to(database: {writing: :user_shard_1})
+
 AnnotateModels.send(options_result[:target_action], options) if Annotate.include_models?
 AnnotateRoutes.send(options_result[:target_action], options) if Annotate.include_routes?
