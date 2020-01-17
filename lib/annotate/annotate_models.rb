@@ -786,6 +786,7 @@ module AnnotateModels
     # then pass it to the associated block
     def do_annotations(options = {})
       parse_options(options)
+      UserRecord.connects_to(database: {writing: :user_shard_0})
 
       header = options[:format_markdown] ? PREFIX_MD.dup : PREFIX.dup
       version = ActiveRecord::Migrator.current_version rescue 0
